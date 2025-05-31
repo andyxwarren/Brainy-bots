@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainy Bots - Fun with Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .flyer-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            bottom: -75px;
+            left: -75px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .robot-icon {
+            font-size: 50px;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo h1 {
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* Intro Box */
+        .intro-box {
+            background: rgba(255,255,255,0.2);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-box h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .age-badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .age-badge {
+            background: white;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 40px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .mission h2 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .mission-content {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Benefits Grid */
+        .benefits {
+            padding: 40px;
+            background: white;
+        }
+
+        .benefits h2 {
+            text-align: center;
+            color: #764ba2;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            color: white;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card:nth-child(even) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .benefit-card:nth-child(3n) {
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+        }
+
+        .benefit-card i {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        /* Studies Section */
+        .studies {
+            padding: 40px;
+            background: #e8f5e9;
+        }
+
+        .studies h2 {
+            text-align: center;
+            color: #4caf50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .study-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border-left: 5px solid #4caf50;
+        }
+
+        .study-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: #4caf50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        /* Classes Section */
+        .classes {
+            padding: 40px;
+            background: #fff3e0;
+        }
+
+        .classes h2 {
+            text-align: center;
+            color: #ff6f00;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .schedule-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .schedule-card:hover {
+            transform: scale(1.05);
+        }
+
+        .schedule-card i {
+            font-size: 2.5em;
+            color: #ff6f00;
+            margin-bottom: 10px;
+        }
+
+        /* Learning Pillars */
+        .pillars {
+            padding: 40px;
+            background: #f3e5f5;
+        }
+
+        .pillars h2 {
+            text-align: center;
+            color: #7b1fa2;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .pillar-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pillar {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .pillar:hover {
+            transform: translateY(-10px);
+        }
+
+        .pillar-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .pillar-content {
+            padding: 20px;
+        }
+
+        .pillar-activities {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .pillar-activities li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pillar-activities li:before {
+            content: "🤖 ";
+            margin-right: 5px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #2c3e50;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Fun Elements */
+        .floating-icon {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .logo h1 {
+                font-size: 2em;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-robot robot-icon" style="color: #4fc3f7;"></i>
+                <h1>BRAINY BOTS</h1>
+                <i class="fas fa-robot robot-icon" style="color: #ff6b9d;"></i>
+            </div>
+            <p class="tagline">🎮 FUN WITH TECHNOLOGY 🚀</p>
+            
+            <div class="intro-box">
+                <h2>Where Kids Become Tech Wizards!</h2>
+                <p>Join our exciting technology adventure designed for young minds aged 6-10</p>
+                <div class="age-badges">
+                    <span class="age-badge">Ages 6-8</span>
+                    <span class="age-badge">Ages 9-10</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="mission">
+            <h2><i class="fas fa-rocket"></i> Our Mission</h2>
+            <div class="mission-content">
+                <p>We create a magical learning environment where children explore technology through play, build essential digital skills, and unleash their creativity through hands-on experiences.</p>
+                <p>Every child leaves with confidence, problem-solving superpowers, and friendships that last beyond the classroom!</p>
+            </div>
+        </div>
+
+        <!-- Benefits Section -->
+        <div class="benefits">
+            <h2>🌟 Amazing Benefits 🌟</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Super Problem-Solving</h3>
+                    <p>Learn to break down challenges like a pro coder and think logically through fun puzzles!</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-memory"></i>
+                    <h3>Memory Power-Up</h3>
+                    <p>Boost focus and mental flexibility through engaging tech activities and games.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Creative Explosion</h3>
+                    <p>Design, animate, and bring your wildest ideas to life with cool digital tools!</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Planning Like a Pro</h3>
+                    <p>Master step-by-step thinking that helps in school and everyday life.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Team Power</h3>
+                    <p>Work with friends on exciting projects and learn collaboration skills.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Think About Thinking</h3>
+                    <p>Develop self-awareness and strategic thinking through debugging and creating.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Studies Section -->
+        <div class="studies">
+            <h2>📚 Proven Results 📚</h2>
+            <div class="study-card">
+                <h3>Research Shows Amazing Outcomes!</h3>
+                <p><strong>Bers et al. (2014)</strong> found that kids using visual coding platforms like ScratchJr showed incredible improvements in:</p>
+                <div class="study-stats">
+                    <div class="stat">
+                        <div class="stat-number">85%</div>
+                        <div>Better Sequential Thinking</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">92%</div>
+                        <div>Improved Problem-Solving</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">78%</div>
+                        <div>Enhanced Creativity</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Classes Section -->
+        <div class="classes">
+            <h2>📅 Class Schedule & Info 📅</h2>
+            <div class="schedule-grid">
+                <div class="schedule-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>After School</h3>
+                    <p>Monday - Friday</p>
+                    <p>3:30 PM - 5:00 PM</p>
+                </div>
+                <div class="schedule-card">
+                    <i class="fas fa-calendar-week"></i>
+                    <h3>Saturday Fun</h3>
+                    <p>Morning Sessions</p>
+                    <p>9:00 AM - 12:00 PM</p>
+                </div>
+                <div class="schedule-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Small Groups</h3>
+                    <p>6-10 Students</p>
+                    <p>Personal Attention</p>
+                </div>
+                <div class="schedule-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Term Projects</h3>
+                    <p>Showcase Events</p>
+                    <p>Certificates & Prizes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Pillars -->
+        <div class="pillars">
+            <h2>🎯 Our Learning Adventures 🎯</h2>
+            <div class="pillar-container">
+                <div class="pillar">
+                    <div class="pillar-header">
+                        <i class="fas fa-code" style="font-size: 3em;"></i>
+                        <h3>Coding & Logic</h3>
+                    </div>
+                    <div class="pillar-content">
+                        <p><strong>Discover the magic behind technology!</strong></p>
+                        <ul class="pillar-activities">
+                            <li>Create your own games</li>
+                            <li>Program friendly robots</li>
+                            <li>Solve coding puzzles</li>
+                            <li>Build interactive stories</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-header">
+                        <i class="fas fa-paint-brush" style="font-size: 3em;"></i>
+                        <h3>Creative Design</h3>
+                    </div>
+                    <div class="pillar-content">
+                        <p><strong>Bring your imagination to life!</strong></p>
+                        <ul class="pillar-activities">
+                            <li>Design digital art</li>
+                            <li>Create animations</li>
+                            <li>Build 3D worlds</li>
+                            <li>Make music & sounds</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact">
+            <h2>🚀 Ready to Join the Adventure? 🚀</h2>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">Limited spots available - Register today!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>Call: (555) 123-4567</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email: hello@brainybots.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>123 Tech Street, Innovation City</span>
+                </div>
+            </div>
+            
+            <a href="#" class="cta-button">Register Now!</a>
+            
+            <p style="margin-top: 30px; opacity: 0.8;">
+                <i class="fas fa-gift"></i> Early bird special: 10% off for the first 20 registrations!
+            </p>
+        </div>
+    </div>
+</body>
+</html>
