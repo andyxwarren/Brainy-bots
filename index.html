@@ -48,9 +48,21 @@
             opacity: 0.2;
             animation: bounce 20s infinite ease-in-out alternate;
         }
+        .robot-float {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.15;
+            animation: robotFloat 25s infinite ease-in-out alternate;
+            border-radius: 10px;
+        }
         @keyframes bounce {
             from { transform: translateY(-20vh); }
             to { transform: translateY(120vh); }
+        }
+        @keyframes robotFloat {
+            from { transform: translateY(-10vh) rotate(0deg); }
+            to { transform: translateY(110vh) rotate(360deg); }
         }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
@@ -274,16 +286,18 @@
 <body>
 
     <div class="bouncing-balls">
-        <div class="ball" style="width: 50px; height: 50px; left: 15%; top: -20vh; animation-duration: 8s; background-color: var(--color-accent);"></div>
-        <div class="ball" style="width: 20px; height: 20px; left: 10%; top: -20vh; animation-duration: 6s; animation-delay: -2s; background-color: var(--color-primary);"></div>
-        <div class="ball" style="width: 80px; height: 80px; left: 80%; top: -20vh; animation-duration: 10s; animation-delay: -1s; background-color: var(--color-accent);"></div>
-        <div class="ball" style="width: 30px; height: 30px; left: 90%; top: -20vh; animation-duration: 7s; animation-delay: -4s; background-color: var(--color-primary);"></div>
+        <div class="robot-float" style="left: 20%; top: 20vh; animation-delay: -2s;"><img src="images/Picture1 (png).png" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
+        <div class="robot-float" style="left: 50%; top: 40vh; animation-delay: -5s;"><img src="images/Picture2 (png).png" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
+        <div class="robot-float" style="left: 80%; top: 60vh; animation-delay: -8s;"><img src="images/Picture3 (png).png" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
+        <div class="robot-float" style="left: 10%; top: 80vh; animation-delay: -11s;"><img src="images/Picture4 (png).png" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
+        <div class="robot-float" style="left: 40%; top: 100vh; animation-delay: -14s;"><img src="images/Picture5 (png).png" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
+        <div class="robot-float" style="left: 70%; top: 120vh; animation-delay: -17s;"><img src="images/Picture7 (png).png" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
     </div>
     
     <header class="main-header">
         <div class="container">
             <a href="#" class="logo-link">
-                <img src="https://i.ibb.co/3kCgjsb/robot-mascot-transparent.png" alt="Brainy Botz Mascot" class="logo-mascot">
+                <img src="images/Brainy Botz robot 4.png" alt="Brainy Botz Mascot" class="logo-mascot">
                 <div>
                     <div class="logo-main-text">BRAINY<span class="logo-accent">BOTZ</span></div>
                     <div class="logo-tagline">FUN PLAY. BRIGHT FUTURE.</div>
@@ -338,7 +352,7 @@
                 <div class="pillars-grid">
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                           <img src="https://i.ibb.co/BqWpYq7/boy-coding-scratch.jpg" alt="A smiling boy using a laptop with a coding program">
+                           <img src="images/Brainy Botz robot 5.png" alt="Coding & Logic Robot">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Coding & Logic</h3>
@@ -348,7 +362,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/j3p2M1F/kids-playing-videogame.jpg" alt="Two young boys smiling while playing a video game">
+                            <img src="images/Brainy Botz robot 6.png" alt="Game Design Robot">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Game Design</h3>
@@ -358,7 +372,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/Wc4mB5t/robot-collection.jpg" alt="A collection of programmable toy robots">
+                            <img src="images/Brainy Botz robot 7.png" alt="Robotics Robot">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Robotics</h3>
@@ -368,7 +382,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/N7P1x2f/kid-drawing-tablet.jpg" alt="A child drawing a cartoon rabbit on a digital tablet">
+                            <img src="images/Brainy Botz robot 8.png" alt="Creative Tech Robot">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Creative Tech</h3>
@@ -378,7 +392,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/GvxY1jK/kid-inventor-robot.jpg" alt="A young boy wearing goggles while building a robot">
+                            <img src="images/Brainy Botz robot 9.png" alt="Innovation Robot">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Innovation</h3>
@@ -388,7 +402,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/rpxh4XG/boy-math-equations.jpg" alt="A young boy with glasses standing in front of a chalkboard with math equations">
+                            <img src="images/Brainy Botz robot 10.png" alt="Maths Thinking Robot">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Maths Thinking</h3>
@@ -429,7 +443,7 @@
             <div class="container">
                 <h2 class="section-title">Class Structure</h2>
                 <div class="classes-layout">
-                    <div class="classes-image"><img src="https://images.pexels.com/photos/8549721/pexels-photo-8549721.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="A young student working on a robotics project"></div>
+                    <div class="classes-image"><img src="images/Brainy Botz robot 11.png" alt="Brainy Botz Class Structure Robot"></div>
                     <div class="classes-details">
                          <div class="detail-item"><strong><i class="fas fa-users"></i>Age Groups</strong><p>We offer two distinct groups to ensure age-appropriate learning: 6 to 8 years old & 9 to 11 years old.</p></div>
                          <div class="detail-item"><strong><i class="fas fa-compress-arrows-alt"></i>Small Class Sizes</strong><p>Between 6 and 10 students per class to ensure each child gets the support and attention they need.</p></div>
