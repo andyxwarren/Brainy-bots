@@ -1,0 +1,1 @@
+- Can you crop the top and the bottom so it keeps the same proportions as the previous image? More can be cropped from the top than bottom

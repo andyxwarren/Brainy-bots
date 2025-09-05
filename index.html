@@ -85,8 +85,14 @@
             gap: 15px;
         }
         .logo-mascot {
-            height: 55px;
+            height: 65px;
             width: auto;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        .logo-link:hover .logo-mascot {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 4px 8px rgba(72, 178, 167, 0.3));
         }
         .logo-main-text {
             font-size: 1.8rem;
@@ -167,28 +173,35 @@
             flex-direction: column;
         }
         .pillar-card:hover {
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 0 0 4px var(--color-accent), 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 0 0 4px var(--color-accent), 0 20px 40px rgba(72, 178, 167, 0.15), 0 15px 35px rgba(0, 0, 0, 0.1);
         }
         .pillar-card-image {
             position: relative;
+            overflow: hidden;
         }
         .pillar-card-image::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-color: var(--color-accent);
-            opacity: 0.60;
+            opacity: 0.15;
             transition: opacity 0.4s ease;
         }
         .pillar-card:hover .pillar-card-image::after {
-            opacity: 0.40;
+            opacity: 0.05;
         }
         .pillar-card img {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
             display: block;
+            filter: brightness(1.1) contrast(1.05) saturate(1.2);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .pillar-card:hover img {
+            filter: brightness(1.2) contrast(1.1) saturate(1.3);
+            transform: scale(1.05);
         }
         .pillar-card-content {
             padding: 25px 30px 30px 30px;
@@ -225,7 +238,8 @@
         .pillar-card:hover .pillar-info-btn {
             background-color: var(--color-accent);
             color: var(--color-light);
-            transform: scale(1.05);
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 4px 15px rgba(72, 178, 167, 0.4);
         }
 
         .classes-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -265,9 +279,103 @@
             .main-nav ul { padding: 0; }
             .wave-container { display: none; }
             .section.wavy-bottom, .section.wavy-top { padding: 60px 0; }
+            .logo-mascot { height: 50px; }
+            .pillar-card img { height: 220px; }
+            .pillar-card:hover { transform: translateY(-8px) scale(1.01); }
         }
         @media(max-width: 480px) {
             .main-nav ul { flex-direction: column; gap: 15px; }
+        }
+
+        /* Floating Robot Decorations */
+        .floating-robot {
+            position: absolute;
+            z-index: 10;
+            opacity: 0.85;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            animation-timing-function: ease-in-out;
+        }
+        .floating-robot::before {
+            content: '';
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            background: radial-gradient(circle, rgba(72, 178, 167, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .floating-robot:hover::before {
+            opacity: 1;
+        }
+        .floating-robot:hover {
+            opacity: 1;
+            transform: scale(1.15);
+        }
+        .floating-robot:hover img {
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4)) drop-shadow(0 0 12px rgba(72, 178, 167, 0.4));
+        }
+        .floating-robot img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3)) drop-shadow(0 0 8px rgba(72, 178, 167, 0.2));
+            transition: all 0.3s ease;
+        }
+        
+        .robot-small { width: 100px; }
+        .robot-medium { width: 140px; }
+        .robot-large { width: 180px; }
+        
+        .robot-float-1 {
+            top: 20%;
+            right: 8%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .robot-float-2 {
+            top: 45%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        .robot-float-3 {
+            top: 15%;
+            right: 12%;
+            animation: float 7s ease-in-out infinite;
+            animation-delay: -2s;
+        }
+        .robot-float-4 {
+            bottom: 30%;
+            left: 8%;
+            animation: float 9s ease-in-out infinite;
+            animation-delay: -4s;
+        }
+        .robot-float-5 {
+            top: 65%;
+            right: 10%;
+            animation: float 5s ease-in-out infinite reverse;
+            animation-delay: -1s;
+        }
+        .robot-float-6 {
+            top: 25%;
+            left: 6%;
+            animation: float 6.5s ease-in-out infinite;
+            animation-delay: -3s;
+        }
+        .robot-float-7 {
+            bottom: 20%;
+            right: 7%;
+            animation: float 7.5s ease-in-out infinite reverse;
+            animation-delay: -2.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-15px) rotate(3deg); }
+            50% { transform: translateY(-25px) rotate(0deg); }
+            75% { transform: translateY(-12px) rotate(-3deg); }
+        }
+        
+        @media(max-width: 768px) {
+            .floating-robot { display: none; }
         }
     </style>
 </head>
@@ -283,7 +391,7 @@
     <header class="main-header">
         <div class="container">
             <a href="#" class="logo-link">
-                <img src="https://i.ibb.co/3kCgjsb/robot-mascot-transparent.png" alt="Brainy Botz Mascot" class="logo-mascot">
+                <img src="images/Brainy Botz robot 4.png" alt="Brainy Botz Mascot" class="logo-mascot">
                 <div>
                     <div class="logo-main-text">BRAINY<span class="logo-accent">BOTZ</span></div>
                     <div class="logo-tagline">FUN PLAY. BRIGHT FUTURE.</div>
@@ -304,6 +412,13 @@
 
     <main>
         <section class="hero section wavy-bottom">
+            <!-- Floating Robot Decorations -->
+            <div class="floating-robot robot-float-1 robot-medium">
+                <img src="images/Brainy Botz robot 5.png" alt="Floating Robot Decoration">
+            </div>
+            <div class="floating-robot robot-float-2 robot-small">
+                <img src="images/Brainy Botz robot 6.png" alt="Floating Robot Decoration">
+            </div>
             <div class="container">
                 <h1>Introducing BRAINY BOTZ</h1>
                 <p>Fun, dynamic and engaging mathematics & technology classes designed for children between the ages of <strong>6 and 11</strong>.</p>
@@ -321,6 +436,10 @@
                     <path d="M0,40 C320,80 640,0 960,40 S1600,80 1920,40 V81 H0 Z" fill="#f0f6ff"></path>
                 </svg>
             </div>
+            <!-- Floating Robot Decorations -->
+            <div class="floating-robot robot-float-3 robot-large">
+                <img src="images/Brainy Botz robot 7.png" alt="Floating Robot Decoration">
+            </div>
             <div class="container">
                 <h2 class="section-title" style="color: var(--color-light); text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">Our Mission</h2>
                 <p class="mission-text" style="color: rgba(255, 255, 255, 0.9);">To provide a fun, hands-on learning environment where kids explore the magic and wonders of numbers and technology, build essential digital skills and ignite their creativity through interactive experiences.</p>
@@ -333,12 +452,19 @@
         </section>
 
         <section id="pillars" class="section">
+            <!-- Floating Robot Decorations -->
+            <div class="floating-robot robot-float-4 robot-medium">
+                <img src="images/Brainy Botz robot 8.png" alt="Floating Robot Decoration">
+            </div>
+            <div class="floating-robot robot-float-6 robot-small">
+                <img src="images/Brainy Botz robot 9.png" alt="Floating Robot Decoration">
+            </div>
             <div class="container">
                 <h2 class="section-title">Our Core Learning Pillars</h2>
                 <div class="pillars-grid">
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                           <img src="https://i.ibb.co/BqWpYq7/boy-coding-scratch.jpg" alt="A smiling boy using a laptop with a coding program">
+                           <img src="images/Picture1 (png).png" alt="Coding & Logic - Programming concepts for kids">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Coding & Logic</h3>
@@ -348,7 +474,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/j3p2M1F/kids-playing-videogame.jpg" alt="Two young boys smiling while playing a video game">
+                            <img src="images/Picture2 (png).png" alt="Game Design - Creating interactive games">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Game Design</h3>
@@ -358,7 +484,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/Wc4mB5t/robot-collection.jpg" alt="A collection of programmable toy robots">
+                            <img src="images/Picture3 (png).png" alt="Robotics - Building and programming robots">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Robotics</h3>
@@ -368,7 +494,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/N7P1x2f/kid-drawing-tablet.jpg" alt="A child drawing a cartoon rabbit on a digital tablet">
+                            <img src="images/Picture4 (png).png" alt="Creative Tech - Digital art and creativity">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Creative Tech</h3>
@@ -378,7 +504,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/GvxY1jK/kid-inventor-robot.jpg" alt="A young boy wearing goggles while building a robot">
+                            <img src="images/Picture5 (png).png" alt="Innovation - Problem solving and invention">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Innovation</h3>
@@ -388,7 +514,7 @@
                     </div>
                     <div class="pillar-card">
                         <div class="pillar-card-image">
-                            <img src="https://i.ibb.co/rpxh4XG/boy-math-equations.jpg" alt="A young boy with glasses standing in front of a chalkboard with math equations">
+                            <img src="images/Picture7 (png).png" alt="Maths Thinking - Mathematical concepts in practice">
                         </div>
                         <div class="pillar-card-content">
                             <h3>Maths Thinking</h3>
@@ -405,6 +531,10 @@
                 <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
                     <path d="M0,40 C320,80 640,0 960,40 S1600,80 1920,40 V81 H0 Z" fill="#f0f6ff"></path>
                 </svg>
+            </div>
+            <!-- Floating Robot Decorations -->
+            <div class="floating-robot robot-float-5 robot-medium">
+                <img src="images/Brainy Botz robot 10.png" alt="Floating Robot Decoration">
             </div>
             <div class="container">
                 <h2 class="section-title" style="color:var(--color-light);">The Benefits of Our Approach</h2>
@@ -426,10 +556,14 @@
         </section>
 
         <section id="classes" class="section">
+            <!-- Floating Robot Decorations -->
+            <div class="floating-robot robot-float-7 robot-large">
+                <img src="images/Brainy Botz robot 11.png" alt="Floating Robot Decoration">
+            </div>
             <div class="container">
                 <h2 class="section-title">Class Structure</h2>
                 <div class="classes-layout">
-                    <div class="classes-image"><img src="https://images.pexels.com/photos/8549721/pexels-photo-8549721.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="A young student working on a robotics project"></div>
+                    <div class="classes-image"><img src="images/Leonardo_Phoenix_A_vibrant_and_lively_robotics_class_for_kids_0.png" alt="A vibrant and lively robotics class for kids"></div>
                     <div class="classes-details">
                          <div class="detail-item"><strong><i class="fas fa-users"></i>Age Groups</strong><p>We offer two distinct groups to ensure age-appropriate learning: 6 to 8 years old & 9 to 11 years old.</p></div>
                          <div class="detail-item"><strong><i class="fas fa-compress-arrows-alt"></i>Small Class Sizes</strong><p>Between 6 and 10 students per class to ensure each child gets the support and attention they need.</p></div>
